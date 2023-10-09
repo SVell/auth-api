@@ -1,14 +1,17 @@
+import cors from "cors";
+import express from "express";
+
 import { attachPrivateRoutes, attachPublicRoutes } from "./routes";
 import { RouteNotFoundError } from "./errors";
 import { createDbConnection } from "./db/createDbConnection";
 import addRespondToResponse from "./middleware/addRespondToResponse";
 
-const express = require("express");
 const body = require("body-parser");
 
 const initExpress = async () => {
   const app = express();
 
+  app.use(cors());
   app.use(express.json());
 
   app.use(addRespondToResponse);
